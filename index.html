@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHL Assessment Recommendation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 12px;
+        }
+        h2 {
+            color: #333;
+        }
+        .recommendation {
+            background: white;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        }
+        .recommendation a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        .recommendation a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h2>🔍 SHL GenAI Assessment Recommendation</h2>
+    <form method="post">
+        <input type="text" name="query" style="width: 100%; padding: 10px;" placeholder="Enter job description or role..." required>
+        <br><br>
+        <button type="submit" style="padding: 10px 20px;">Get Recommendations</button>
+    </form>
+
+    {% if results %}
+        <h3>Top Recommendations for: "{{ query }}"</h3>
+        {% for item in results %}
+            <div class="recommendation">
+                <h4>{{ item["Assessment Name"] }}</h4>
+                <p>{{ item["Summary"] }}</p>
+                <p><strong>Duration:</strong> {{ item["Duration"] }}</p>
+                <a href="{{ item["http://127.0.0.1:5000"] }}" target="_blank">View Assessment</a>
+            </div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
